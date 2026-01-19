@@ -7,30 +7,30 @@ import { motion } from 'framer-motion';
 
 const MySwal = withReactContent(Swal);
 
-const Login: React.FC = () => {
-    const { login } = useAuth();
+const Register: React.FC = () => {
+    const { register } = useAuth();
     const navigate = useNavigate();
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            await login({ email, password });
+            await register({ name, email, password });
             MySwal.fire({
                 icon: 'success',
-                title: 'Welcome Back!',
-                text: 'Login successful',
-                timer: 1500,
-                showConfirmButton: false
+                title: 'Account Created!',
+                text: 'You can now log in.',
+                confirmButtonColor: '#10b981'
             });
-            navigate('/dashboard');
+            navigate('/login');
         } catch (err: any) {
             MySwal.fire({
                 icon: 'error',
-                title: 'Oops...',
-                text: 'Login failed. Please check your credentials.',
-                confirmButtonColor: '#3b82f6'
+                title: 'Registration Failed',
+                text: 'Something went wrong. Please try again.',
+                confirmButtonColor: '#ef4444'
             });
         }
     };
@@ -39,24 +39,34 @@ const Login: React.FC = () => {
         <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4 relative overflow-hidden">
             {/* Background Decorations */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-                <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-blue-100/50 blur-3xl"></div>
-                <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-cyan-100/50 blur-3xl"></div>
-                <div className="absolute -bottom-[10%] left-[20%] w-[35%] h-[35%] rounded-full bg-sky-100/40 blur-3xl"></div>
+                <div className="absolute top-[10%] -right-[5%] w-[35%] h-[35%] rounded-full bg-blue-100/50 blur-3xl"></div>
+                <div className="absolute -bottom-[5%] left-[10%] w-[40%] h-[40%] rounded-full bg-cyan-100/40 blur-3xl"></div>
             </div>
 
             <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="w-full max-w-md p-8 space-y-8 bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 z-10"
+                className="w-full max-w-md p-8 space-y-6 bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 z-10"
             >
                 <div className="text-center">
-                    <h2 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 tracking-tight mb-2">AhorraYa</h2>
-                    <p className="text-slate-500 text-lg">Inicia sesión para ahorrar</p>
+                    <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-600 tracking-tight">Únete a AhorraYa</h2>
+                    <p className="text-slate-500 mt-2 text-lg">Comienza tu ahorro hoy</p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="space-y-4">
+                        <div>
+                            <label className="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Nombre Completo</label>
+                            <input
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                className="input-field"
+                                placeholder="Juan Pérez"
+                                required
+                            />
+                        </div>
                         <div>
                             <label className="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Correo Electrónico</label>
                             <input
@@ -82,17 +92,17 @@ const Login: React.FC = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full btn-primary py-3 text-lg shadow-blue-200/50 hover:shadow-blue-300/50"
+                        className="w-full px-5 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-blue-200/50 transform hover:-translate-y-0.5 font-medium text-lg mt-2"
                     >
-                        Iniciar Sesión
+                        Crear Cuenta
                     </button>
                 </form>
                 <p className="text-sm text-center text-slate-500">
-                    ¿No tienes una cuenta? <Link to="/register" className="text-blue-600 hover:text-blue-700 font-bold hover:underline transition-all">Regístrate</Link>
+                    ¿Ya tienes una cuenta? <Link to="/login" className="text-blue-600 hover:text-blue-700 font-bold hover:underline transition-all">Iniciar Sesión</Link>
                 </p>
             </motion.div>
         </div>
     );
 };
 
-export default Login;
+export default Register;
