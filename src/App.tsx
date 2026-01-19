@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import Login from './pages/Login'
+import Login from './pages/LoginPage'
 import Register from './pages/Register'
-import Dashboard from './pages/Dashboard'
+import Dashboard from './pages/DashboardPage'
 import GoalDetails from './pages/GoalDetails'
 import { AuthProvider, useAuth } from './context/AuthContext'
 

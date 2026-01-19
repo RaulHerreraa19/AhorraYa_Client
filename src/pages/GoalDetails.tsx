@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { GoalService, PaymentService, type Goal, type PaymentRecord } from '../api/services';
-import { ArrowLeft, Edit2, Trash2, Calendar, DollarSign, Plus } from 'lucide-react';
+import { ArrowLeft, Edit2, Trash2, Calendar, Plus } from 'lucide-react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import AddPaymentModal from '../components/AddPaymentModal';

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import React, { createContext, useContext, useState, type ReactNode } from 'react';
 import api from '../api/axios';
 
 interface User {
@@ -25,7 +25,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         return storedUser ? JSON.parse(storedUser) : null;
     });
     const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
-    const [loading, setLoading] = useState<boolean>(false); // No async check, so not loading
+    const [loading] = useState<boolean>(false); // No async check, so not loading
 
     // useEffect removed as we initialize from localStorage directly
 
