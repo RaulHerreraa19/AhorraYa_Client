@@ -4,6 +4,7 @@ import Login from './pages/LoginPage'
 import Register from './pages/Register'
 import Dashboard from './pages/DashboardPage'
 import GoalDetails from './pages/GoalDetails'
+import DonationPage from './pages/DonationPage'
 import { AuthProvider, useAuth } from './context/AuthContext'
 
 // Protected Route Wrapper
@@ -32,6 +33,7 @@ function AppRoutes() {
       <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
       <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/goals/:id" element={<ProtectedRoute><GoalDetails /></ProtectedRoute>} />
+      <Route path="/donations" element={<ProtectedRoute><DonationPage /></ProtectedRoute>} />
       <Route path="/" element={<Navigate to="/dashboard" />} />
     </Routes>
   )

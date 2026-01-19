@@ -5,7 +5,7 @@ import { GoalService, PaymentService, type Goal, type PaymentRecord } from '../a
 import GoalCard from '../components/GoalCard';
 import CreateGoalModal from '../components/CreateGoalModal';
 import AddPaymentModal from '../components/AddPaymentModal';
-import { Plus, Layout } from 'lucide-react';
+import { Plus, Layout, Heart } from 'lucide-react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { motion } from 'framer-motion';
@@ -115,6 +115,9 @@ const Dashboard: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-4">
+                    <button onClick={() => navigate('/donations')} className="hidden md:flex items-center gap-2 px-4 py-2.5 text-red-500 hover:text-red-600 font-bold transition-all bg-red-50 hover:bg-red-100 rounded-xl border border-red-100">
+                        <Heart size={18} fill="currentColor" /> Donar
+                    </button>
                     <button onClick={handleLogout} className="px-5 py-2.5 text-slate-600 hover:text-slate-900 font-medium transition-colors bg-white/50 hover:bg-white rounded-xl border border-transparent hover:border-slate-200">
                         Cerrar Sesión
                     </button>
